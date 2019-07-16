@@ -40,7 +40,7 @@ const performCheck = () => {
 
 const attemptUpgrade = (appId) => {
   // failover if itunes - a bit excessive
-  const itunesURI = `itmss://itunes.apple.com/app/id${appId}?mt=8`
+  const itunesURI = `itms-apps://itunes.apple.com/app/id${appId}?mt=8`
   const itunesURL = `https://itunes.apple.com/app/id${appId}?mt=8`
 
   Linking.canOpenURL(itunesURI).then(supported => {
@@ -54,11 +54,10 @@ const attemptUpgrade = (appId) => {
 
 const showUpgradePrompt = (appId) => {
   Alert.alert(
-    'Update Available',
-    'There is an updated version available on the App Store.  Would you like to upgrade?',
+    'Atualização Disponível',
+    'Existe uma versão atualizada do aplicativo na App Store. Por favor, atualize.',
     [
-      {text: 'Upgrade', onPress: () => attemptUpgrade(appId)},
-      {text: 'Cancel'}
+      {text: 'Atualizar', onPress: () => attemptUpgrade(appId)},
     ]
   )
 }
