@@ -2,6 +2,7 @@ import React from 'react'
 import { Alert, Linking, Platform } from 'react-native'
 import DeviceInfo from 'react-native-device-info'
 import apisauce from 'apisauce'
+import semver from 'semver'
 
 const createAPI = () => {
   const baseURL = Platform.OS === 'ios' ?
@@ -38,7 +39,7 @@ const performCheck = () => {
       if (response.ok && response.data.resultCount === 1) {
         latestInfo = response.data.results[0]
         // check for version difference
-        updateIsAvailable = latestInfo.version !== DeviceInfo.getVersion()
+        updateIsAvailable = semver.gt(latestInfo.version, DeviceInfo.getVersion());
       }
   
       return {updateIsAvailable, ...latestInfo}
@@ -48,7 +49,7 @@ const performCheck = () => {
     if (response.ok && response.data['com.rxpro.br']) {
       latestInfo = response.data['com.rxpro.br'].minVersionName;
       // check for version difference
-      updateIsAvailable = latestInfo !== DeviceInfo.getVersion()
+      updateIsAvailable = semver.gt(latestInfo.version, DeviceInfo.getVersion());
     }
 
     return { updateIsAvailable, ...latestInfo, trackId: 'com.rxpro.br' }
