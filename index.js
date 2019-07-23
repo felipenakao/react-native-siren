@@ -76,7 +76,7 @@ const attemptUpgrade = (appId) => {
 const showUpgradePrompt = (appId) => {
   Alert.alert(
     'Atualização Disponível',
-    'Existe uma versão atualizada do aplicativo na App Store. Por favor, atualize.',
+    'Existe uma versão atualizada desse aplicativo disponível. Por favor, atualize.',
     [
       {text: 'Atualizar', onPress: () => attemptUpgrade(appId)},
     ],
