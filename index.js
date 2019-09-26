@@ -49,7 +49,7 @@ const performCheck = () => {
     if (response.ok && response.data['com.rxpro.br']) {
       latestInfo = response.data['com.rxpro.br'].minVersionName;
       // check for version difference
-      updateIsAvailable = semver.gt(latestInfo.version, DeviceInfo.getVersion());
+      updateIsAvailable = semver.gt(latestInfo || latestInfo.version, DeviceInfo.getVersion());
     }
 
     return { updateIsAvailable, ...latestInfo, trackId: 'com.rxpro.br' }
